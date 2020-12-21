@@ -7,3 +7,4 @@ src/graphql-types.ts
 **/gatsby-*.js
 **/.eslintrc.js
 
+webpack.*

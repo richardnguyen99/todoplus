@@ -4,16 +4,14 @@ module.exports = {
     browser: true,
     node: true,
     es6: true,
-    "jest/globals": true,
   },
-  plugins: ["@typescript-eslint", "react-hooks", "prettier", "jest"],
+  plugins: ["@typescript-eslint", "react-hooks", "prettier"],
   extends: [
     "airbnb",
     "plugin:@typescript-eslint/recommended",
     "plugin:import/typescript",
     "plugin:prettier/recommended",
     "prettier/@typescript-eslint",
-    "plugin:jest/recommended",
   ],
   settings: {
     "import/extensions": [".js", ".jsx", ".ts", ".tsx"],
@@ -38,6 +36,7 @@ module.exports = {
     "import/export": "error",
     "import/no-unresolved": "off",
     "import/prefer-default-export": "error", // Allow single Named-export
+    "no-use-before-define": "off",
     "no-unused-expressions": [
       "error",
       {
@@ -55,6 +54,7 @@ module.exports = {
         allowTypedFunctionExpressions: true,
       },
     ],
+    "@typescript-eslint/no-use-before-define": ["error"],
     /**
      * @description rules of eslint-plugin-react
      */
@@ -96,10 +96,10 @@ module.exports = {
      * @description rules of eslint-plugin-jest
      * See at: https://github.com/jest-community/eslint-plugin-jest
      */
-    "jest/no-disabled-tests": "warn",
-    "jest/no-focused-tests": "error",
-    "jest/no-identical-title": "error",
-    "jest/prefer-to-have-length": "warn",
-    "jest/valid-expect": "error",
+    // "jest/no-disabled-tests": "warn",
+    // "jest/no-focused-tests": "error",
+    // "jest/no-identical-title": "error",
+    // "jest/prefer-to-have-length": "warn",
+    // "jest/valid-expect": "error",
   },
 };

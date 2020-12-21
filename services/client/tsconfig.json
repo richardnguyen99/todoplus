@@ -11,6 +11,7 @@
     "jsx": "react",
     "noImplicitAny": true,
     "esModuleInterop": true,
+    "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
     "baseUrl": "./"
