@@ -1,0 +1,9 @@
+.cache/
+node_modules/
+public/
+coverage/
+src/graphql-types.ts
+
+**/gatsby-*.js
+**/.eslintrc.js
+
