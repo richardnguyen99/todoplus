@@ -5,3 +5,11 @@ repos:
       - id: black
         language_version: python3
         files: ^services/auth
+
+  - repo: local
+    hooks:
+      - id: eslint
+        name: eslint
+        entry: bash -c "npm run --prefix services/client lint"
+        always_run: true
+        language: system

@@ -1,0 +1,26 @@
+version: "3.8"
+services:
+  auth:
+    build:
+      context: ./services/auth
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/auth:/usr/src/app
+    ports:
+      - 5002:5000
+    environment:
+      - FLASK_ENV=development
+      - SECRET_KEY=tdp-auth
+
+  client:
+    build:
+      context: ./services/client
+      dockerfile: Dockerfile
+    volumes:
+      - ./services/client:/usr/src/client
+      - /usr/src/client/node_modules
+
+    ports:
+      - 3005:3000
+    environment:
+      - NODE_ENV=development

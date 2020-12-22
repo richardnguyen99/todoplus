@@ -5,9 +5,9 @@
   "main": "index.js",
   "scripts": {
     "test": "echo \"No Test\"",
-    "start": "webpack serve",
+    "start": "webpack serve --host 0.0.0.0 --port 3000",
     "build": "webpack --mode=production",
-    "eslint": "eslint . --ext .tsx --ext .ts",
+    "lint": "eslint . --ext .tsx --ext .ts",
     "type-check": "tsc"
   },
   "keywords": [
