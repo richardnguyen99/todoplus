@@ -6,6 +6,9 @@ name = "pypi"
 [packages]
 flask = "*"
 coverage = "*"
+flask-sqlalchemy = "*"
+psycopg2-binary = "*"
+flask-bcrypt = "*"
 
 [dev-packages]
 black = "*"
