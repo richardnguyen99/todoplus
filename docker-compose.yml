@@ -24,9 +24,9 @@ services:
     environment:
       - POSTGRES_USERNAME=admin
       - POSTGRES_PASSWORD=admin
-      - POSTGRES_DATABASE=td
+      - POSTGRES_DB=tdp
     ports:
-      - "5433:5432"
+      - 5433:5432
 
   client:
     build:

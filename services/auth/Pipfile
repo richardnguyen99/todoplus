@@ -9,6 +9,7 @@ coverage = "*"
 flask-sqlalchemy = "*"
 psycopg2-binary = "*"
 flask-bcrypt = "*"
+marshmallow = "*"
 
 [dev-packages]
 black = "*"

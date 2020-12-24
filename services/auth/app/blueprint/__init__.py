@@ -11,3 +11,8 @@ from .login import LoginAPI
 
 login_view = LoginAPI.as_view("login_view")
 auth_bp.add_url_rule("/login", view_func=login_view, methods=["GET", "POST"])
+
+from .register import RegisterAPI
+
+register_view = RegisterAPI.as_view("register_view")
+auth_bp.add_url_rule("/register", view_func=register_view, methods=["POST"])

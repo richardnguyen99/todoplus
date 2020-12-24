@@ -3,6 +3,7 @@ import datetime
 from flask_sqlalchemy import SQLAlchemy
 
 from app.utils.extensions import db
+from app.utils.func import hash_password
 
 
 class User(db.Model):
@@ -26,7 +27,7 @@ class User(db.Model):
 
     def __init__(self, username, password, email):
         self.username = username
-        self.password = password
+        self.password = hash_password(password)
         self.email = email
         self.is_active = is_active
         self.is_admin = is_admin
