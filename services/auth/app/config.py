@@ -1,8 +1,22 @@
 import os
 
-basedir = os.path.abspath(os.path.dirname(__file__))
+
+class BaseConfig(object):
+    """Base configuration variables used in all environments."""
+
+    SECRET_KEY = os.environ.get("SECRET_KEY")
+    TESTING = False
+    DEBUG = os.environ.get("FLASK_ENV") == "development"
+    SQLALCHEMY_TRACK_MODIFICATIONS = True
+    ACCESS_TOKEN_EXPIRE = 30
+    CORS_ORIGINS = [
+        "http://localhost",
+        "http://localhost:3005",
+        "http://localhost:8080",
+    ]
 
 
-class DevConfig(object):
-    SQLALCHEMY_DATABASE_URI = os.getenv("DB_URL")
-    SQLALCHEMY_TRACK_MODIFICATIONS = False
+class DevConfig(BaseConfig):
+    """Environment variables used in development mode."""
+
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")

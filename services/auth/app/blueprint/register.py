@@ -11,30 +11,36 @@ class RegisterAPI(MethodView):
     def post(self):
         req = request.get_json()
         res = {}
+        data, err = {}, ""
 
-        data, err = user_schema.load(req)
+        try:
+            data = user_schema.load(req)
 
-        if err:
-            res = {"msg": req, "status": "failed"}
+            if err:
+                res = {"msg": req, "status": "failed"}
 
-            return make_response(jsonify(res)), HTTPStatus.BAD_REQUEST
+                return make_response(jsonify(res)), HTTPStatus.BAD_REQUEST
 
-        username = data.get("username")
-        password = data.get("password")
-        email = data.get("email")
+            username = data.get("username")
+            password = data.get("password")
+            email = data.get("email")
 
-        user = get_user_by_username(username, User)
+            user = get_user_by_username(username, User)
 
-        if not user:
-            new_user = User(username, password, email)
+            if not user:
+                new_user = User(username, password, email)
 
-            save_user(new_user)
+                save_user(new_user)
 
-            res = {"msg": "registered success", "status": "success"}
+                res = {"msg": "registered success", "status": "success"}
 
-            return make_response(jsonify(res)), HTTPStatus.CREATED
+                return make_response(jsonify(res)), HTTPStatus.CREATED
 
-        else:
-            res = {"msg": "User has existed already", "status": "failed"}
+            else:
+                res = {"msg": "User has existed already", "status": "failed"}
 
-            return make_response(jsonify(res)), HTTPStatus.BAD_REQUEST
+                return make_response(jsonify(res)), HTTPStatus.BAD_REQUEST
+        except Exception as e:
+            res = {"msg": f"Internal errors: {e}", "status": "failed", "data": req}
+
+            return make_response(jsonify(res)), HTTPStatus.INTERNAL_SERVER_ERROR
