@@ -2,7 +2,7 @@ import os
 
 from flask import Flask
 
-from .utils.extensions import db, bcrypt, cors
+from .utils.extensions import db, bcrypt, cors, migrate
 
 
 def create_app(config=None):
@@ -12,6 +12,7 @@ def create_app(config=None):
     db.init_app(app)
     bcrypt.init_app(app)
     cors.init_app(app)
+    migrate.init_app(app, db)
 
     from .blueprint import auth_bp
 

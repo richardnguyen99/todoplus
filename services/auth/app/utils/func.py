@@ -12,3 +12,7 @@ def hash_password(password):
 def save_user(user):
     db.session.add(user)
     db.session.commit()
+
+
+def check_password(password, hashed_password):
+    return bcrypt.check_password_hash(hashed_password, password)
