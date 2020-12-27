@@ -9,14 +9,10 @@ class BaseConfig(object):
     DEBUG = os.environ.get("FLASK_ENV") == "development"
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     ACCESS_TOKEN_EXPIRE = 30
-    CORS_ORIGINS = [
-        "http://localhost",
-        "http://localhost:3005",
-        "http://localhost:8080",
-    ]
+    CORS_ORIGINS = "*"
 
 
 class DevConfig(BaseConfig):
     """Environment variables used in development mode."""
 
-    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL")
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "sqlite://")

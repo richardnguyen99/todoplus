@@ -7,7 +7,7 @@ from .utils.extensions import db, bcrypt, cors
 
 def create_app(config=None):
     app = Flask(__name__, instance_relative_config=True)
-    app.config.from_object(os.environ.get("APP_CONFIG"))
+    app.config.from_object("app.config.DevConfig")
 
     db.init_app(app)
     bcrypt.init_app(app)

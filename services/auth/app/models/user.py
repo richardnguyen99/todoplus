@@ -29,8 +29,6 @@ class User(db.Model):
         self.username = username
         self.password = hash_password(password)
         self.email = email
-        self.is_active = is_active
-        self.is_admin = is_admin
 
     def __str__(self):
         return f"<User {self.username}>"
