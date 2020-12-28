@@ -4,7 +4,7 @@ from flask.views import MethodView
 
 from app.schema import user_schema
 from app.models.user import User
-from app.utils.func import check_password, get_user_by_username
+from app.utils.func import check_password, get_user_by_username, update_user_login
 
 
 class LoginAPI(MethodView):
@@ -44,6 +44,7 @@ class LoginAPI(MethodView):
 
                 return make_response(jsonify(res)), HTTPStatus.FORBIDDEN
 
+            update_user_login(user)
             res = {"msg": "Logged in success", "status": "failed", "data": f"{req}"}
 
             return make_response(jsonify(res)), HTTPStatus.ACCEPTED

@@ -24,6 +24,9 @@ class User(db.Model):
     modified_at = db.Column(
         db.DateTime, default=datetime.datetime.utcnow(), nullable=False
     )
+    last_login = db.Column(
+        db.DateTime, default=datetime.datetime.utcnow(), nullable=False
+    )
 
     def __init__(self, username, password, email):
         self.username = username
@@ -43,4 +46,5 @@ class User(db.Model):
             "email": self.email,
             "is_active": self.is_active,
             "is_admin": self.is_admin,
+            "last_login": self.last_login,
         }
