@@ -14,7 +14,13 @@
     "moduleResolution": "node",
     "allowSyntheticDefaultImports": true,
     "removeComments": true,
-    "baseUrl": "./"
+    "baseUrl": "./",
+    "paths": {
+      "@components": ["./src/components"],
+      "@components/*": ["./src/components/*"],
+      "@pages": ["./src/pages"],
+      "@pages/*": ["./src/pages/*"]
+    }
   },
   "include": [
     "./src",

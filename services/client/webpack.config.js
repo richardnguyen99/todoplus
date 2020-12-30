@@ -15,13 +15,23 @@ module.exports = {
         test: /\.tsx?$/,
         loader: "ts-loader",
         exclude: /node_modules/
+      },
+      {
+        test: /\.(css|sass|scss)$/i,
+        use: [
+          "style-loader",
+          "css-loader",
+          "sass-loader"
+        ]
       }
     ]
   },
   resolve: {
     extensions: [".tsx", ".jsx", ".js", ".ts"],
     alias: {
-      react: path.resolve("./node_modules/react")
+      react: path.resolve("./node_modules/react"),
+      "@pages": path.resolve(__dirname, "src", "pages"),
+      "@components": path.resolve(__dirname, "src", "components"),
     }
   },
   devServer: {

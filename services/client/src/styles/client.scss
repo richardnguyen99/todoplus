@@ -1,0 +1,12 @@
+@use "color";
+@use "theme";
+@use "vars";
+@use "page";
+
+.vs-remove-transition {
+  *,
+  *::after,
+  *::before {
+    transition: all 0s !important;
+  }
+}

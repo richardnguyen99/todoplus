@@ -1,18 +1,20 @@
 import React from "react";
 import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
 
+import { Home, Login, Register } from "@pages";
+
 const Hello: React.FC = () => {
   return (
     <Router>
       <Switch>
         <Route exact path="/">
-          <h1>Hello, World</h1>
+          <Home />
         </Route>
         <Route exact path="/login">
-          <h1>Login page</h1>
+          <Login />
         </Route>
         <Route exact path="/register">
-          <h1>Register page</h1>
+          <Register />
         </Route>
         <Route path="*">
           <h1>Not found</h1>

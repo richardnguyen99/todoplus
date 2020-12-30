@@ -1,0 +1,22 @@
+@use "mixins";
+
+[tdp-theme="dark"] {
+  --tdp-background: 30, 32, 35;
+  --tdp-text: 255, 255, 255;
+  --tdp-gray-1: 24, 25, 28;
+  --tdp-gray-2: 20, 20, 23;
+  --tdp-gray-3: 15, 16, 19;
+  --tdp-gray-4: 10, 11, 14;
+  --tdp-shadow-opacity: 0.3;
+  --tdp-dark: 0, 0, 0;
+  --tdp-background-opacity: 0.6;
+}
+
+[tdp-theme=dark] {
+  --tdp-theme-bg: #18191c;
+  --tdp-theme-color: #fff;
+  --tdp-theme-layout: #1e2023;
+  --tdp-theme-bg2: #141417;
+  --tdp-theme-code: #141417;
+  --tdp-theme-code2: #161619;
+}

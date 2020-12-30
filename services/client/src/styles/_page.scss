@@ -1,0 +1,13 @@
+.page {
+  background-color: var(--tdp-theme-bg);
+  display: block;
+  margin-bottom: 0;
+  margin-left: 260px;
+  padding-left: 0 !important;
+  padding-top: 200px !important;
+  position: relative;
+  transition: all 0.25s ease;
+  width: calc(100% - 250px);
+}
+
+

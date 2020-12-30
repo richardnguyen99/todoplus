@@ -13,3 +13,11 @@ repos:
         entry: bash -c "npm run --prefix services/client lint"
         always_run: true
         language: system
+
+  - repo: local
+    hooks:
+      - id: stylelint
+        name: stylelint
+        entry: bash -c "npm run --prefix services/client stylelint"
+        always_run: true
+        language: system
