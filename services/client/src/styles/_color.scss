@@ -1,65 +1,65 @@
 :root {
-  --primary: 25, 91, 255;
-  --warn: 255, 186, 0;
-  --danger: 255,71,87;
-  --success: 70,201,58;
-  --dark: 30,30,30;
-  --light: 244,247,248;
-  --color: 17,18,20;
+  --tdp-primary: 25, 91, 255;
+  --tdp-warn: 255, 186, 0;
+  --tdp-danger: 255,71,87;
+  --tdp-success: 70,201,58;
+  --tdp-dark: 30,30,30;
+  --tdp-light: 244,247,248;
+  --tdp-color: 17,18,20;
 
   // social colors;
-  --facebook: 59, 89, 153;
-  --twitter: 29, 161, 242;
-  --youtube: 255, 0, 0;
-  --pinterest: 189, 8, 28;
-  --linkedin: 0, 119, 181;
-  --snapchat: 255, 252, 0;
-  --whatsapp: 37, 211, 102;
-  --tumblr: 54, 70, 93;
-  --reddit: 255, 69, 0;
-  --spotify: 30, 215, 96;
-  --amazon: 255, 153, 0;
-  --medium: 2, 184, 117;
-  --vimeo: 26, 183, 234;
-  --skype: 0, 175, 240;
-  --dribbble: 234, 76, 137;
-  --slack: 74, 21, 75;
-  --yahoo: 67, 2, 151;
-  --twitch: 100, 65, 164;
-  --discord: 114, 137, 218;
-  --telegram: 0, 136, 204;
-  --google-plus: 219, 68, 55;
-  --messenger: 0, 132, 255;
+  --tdp-facebook: 59, 89, 153;
+  --tdp-twitter: 29, 161, 242;
+  --tdp-youtube: 255, 0, 0;
+  --tdp-pinterest: 189, 8, 28;
+  --tdp-linkedin: 0, 119, 181;
+  --tdp-snapchat: 255, 252, 0;
+  --tdp-whatsapp: 37, 211, 102;
+  --tdp-tumblr: 54, 70, 93;
+  --tdp-reddit: 255, 69, 0;
+  --tdp-spotify: 30, 215, 96;
+  --tdp-amazon: 255, 153, 0;
+  --tdp-medium: 2, 184, 117;
+  --tdp-vimeo: 26, 183, 234;
+  --tdp-skype: 0, 175, 240;
+  --tdp-dribbble: 234, 76, 137;
+  --tdp-slack: 74, 21, 75;
+  --tdp-yahoo: 67, 2, 151;
+  --tdp-twitch: 100, 65, 164;
+  --tdp-discord: 114, 137, 218;
+  --tdp-telegram: 0, 136, 204;
+  --tdp-google-plus: 219, 68, 55;
+  --tdp-messenger: 0, 132, 255;
 
   // theme;
-  --background: 255, 255, 255;
-  --text: 44, 62, 80;
-  --gray-1: 249, 252, 253;
-  --gray-2: 244, 247, 248;
-  --gray-3: 240, 243, 244;
-  --gray-4: 230, 233, 234;
+  --tdp-background: 255, 255, 255;
+  --tdp-text: 44, 62, 80;
+  --tdp-gray-1: 249, 252, 253;
+  --tdp-gray-2: 244, 247, 248;
+  --tdp-gray-3: 240, 243, 244;
+  --tdp-gray-4: 230, 233, 234;
 }
 
 [class*="--primary"] {
-  --color: var(--primary);
+  --tdp-color: var(--tdp-primary);
 }
 
 [class*="--default"] {
-  --color: var(--primary);
+  --tdp-color: var(--tdp-primary);
 }
 
 [class*="--danger"] {
-  --color: var(--danger);
+  --tdp-color: var(--tdp-danger);
 }
 
 [class*="--success"] {
-  --color: var(--success);
+  --tdp-color: var(--tdp-success);
 }
 
 [class*="--dark"] {
-  --color: var(--dark);
+  --tdp-color: var(--tdp-dark);
 }
 
 [class*="--warn"] {
-  --color: var(--warn);
+  --tdp-color: var(--warn);
 }
