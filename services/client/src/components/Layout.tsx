@@ -1,38 +1,67 @@
-/* eslint-disable react/button-has-type */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useRef } from "react";
+import { Link, useLocation } from "react-router-dom";
+
+import CustomLink from "./Link";
 
 const Layout: React.FC = ({ children }) => {
+  const location = useLocation();
+
+  const lineRef = useRef<HTMLDivElement>(null);
+
+  const navbarRef = useRef<HTMLDivElement>(null);
+
+  const handleActiveLine = (): void => {
+    if (navbarRef && navbarRef.current && lineRef && lineRef.current) {
+      const activeNavbarLink = navbarRef.current.querySelector<HTMLElement>(
+        ".tdp-navbar__item.active"
+      );
+
+      if (activeNavbarLink) {
+        lineRef.current.style.left = `${activeNavbarLink.offsetLeft}px`;
+        lineRef.current.style.width = `${activeNavbarLink.offsetWidth}px`;
+      }
+    }
+  };
+
+  useEffect(() => {
+    handleActiveLine();
+  }, [location]);
+
   return (
     <>
       <div className="tdp-navbar-content shadow">
-        <div className="tdp-navbar">
+        <div ref={navbarRef} className="tdp-navbar">
           <div className="tdp-navbar__left">
             <p>Todo+</p>
-          </div>
-          <div className="tdp-navbar__center">
-            <div className="tdp-navbar__group">
-              <button className="tdp-navbar__group__item">About</button>
-            </div>
-            <div className="tdp-navbar__group">
-              <button className="tdp-navbar__group__item">Github</button>
-            </div>
+            <CustomLink onActive={handleActiveLine} to="/">
+              About
+            </CustomLink>
+            <CustomLink onActive={handleActiveLine} to="/login">
+              Login
+            </CustomLink>
           </div>
           <div className="tdp-navbar__right">
-            <button className="tdp-button tdp-button--primary tdp-button--border">
+            <button
+              type="button"
+              className="tdp-button tdp-button--primary tdp-button--border"
+            >
               <div className="tdp-button__content">
                 <Link to="/register">Register</Link>
               </div>
             </button>
-            <button className="tdp-button tdp-button--primary tdp-button--default">
+            <button
+              type="button"
+              className="tdp-button tdp-button--primary tdp-button--default"
+            >
               <div className="tdp-button__content">
                 <Link to="/login">Login</Link>
               </div>
             </button>
           </div>
+          <div ref={lineRef} className="tdp-navbar__line" />
         </div>
       </div>
-      <main className="page">{children}</main>
+      <main className="tdp-container">{children}</main>
     </>
   );
 };
