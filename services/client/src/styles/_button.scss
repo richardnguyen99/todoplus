@@ -49,6 +49,11 @@
     }
   }
 
+  &.center {
+    margin-left: auto;
+    margin-right: auto;
+  }
+
 
   &--active-disabled {
     pointer-events: none;

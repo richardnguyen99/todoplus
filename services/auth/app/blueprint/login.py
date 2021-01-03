@@ -45,7 +45,7 @@ class LoginAPI(MethodView):
                 return make_response(jsonify(res)), HTTPStatus.FORBIDDEN
 
             update_user_login(user)
-            res = {"msg": "Logged in success", "status": "failed", "data": f"{req}"}
+            res = {"msg": "Logged in success", "status": "success", "data": f"{req}"}
 
             return make_response(jsonify(res)), HTTPStatus.ACCEPTED
 

@@ -1,0 +1,24 @@
+.tdp-hero {
+  align-items: center;
+  display: flex;
+  height: 100vh;
+  justify-content: flex-start;
+  position: relative;
+  width: 100%;
+
+  &__left {
+    align-items: center;
+    display: flex;
+    justify-content: flex-start;
+    min-height: 800px;
+    width: 50%;
+  }
+
+  &__center {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    min-width: 800px;
+    width: 100%;
+  }
+}

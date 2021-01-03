@@ -5,9 +5,10 @@ import { Layout } from "@components";
 const Home: React.FC = () => {
   return (
     <Layout>
-      <p>HomePage</p>
       <section className="tdp-hero">
-        <h1>TODO+</h1>
+        <div className="tdp-hero__left">
+          <h1>TODO+</h1>
+        </div>
       </section>
     </Layout>
   );
