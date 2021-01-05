@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
+import axios from "axios";
 
-import { Layout } from "@components";
+import { ToastContext } from "@context/Toast";
 
 type FormState = {
   formValues: {
@@ -22,6 +23,8 @@ type FormState = {
 };
 
 const Register: React.FC = () => {
+  const toastContext = useContext(ToastContext);
+
   const [formState, setFormState] = useState<FormState>({
     formValues: {
       username: "",
@@ -91,12 +94,19 @@ const Register: React.FC = () => {
     e.preventDefault();
     const { formValidity, formValues } = formState;
     if (Object.values(formValidity).every(Boolean)) {
-      console.log(formValues);
+      axios({
+        url: "/api/v1/auth/register",
+        data: formValues,
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      }).then((res) => {
+        toastContext.add(res.data, "bottom-center");
+      });
     }
   };
 
   return (
-    <Layout>
+    <div className="tdp-container">
       <section className="tdp-hero">
         <div className="tdp-hero__center">
           <form className="tdp-form" onSubmit={handleSubmit}>
@@ -104,14 +114,14 @@ const Register: React.FC = () => {
             <div className="tdp-input-parent tdp-input-parent--shadow tdp-component--primary">
               <div className="tdp-input-content">
                 <input
-                  id="login"
+                  id="username"
                   name="username"
                   className="tdp-input tdp-input--has-icon"
                   onChange={handleChange}
                   value={formState.formValues.username}
                 />
                 <label
-                  htmlFor="login"
+                  htmlFor="username"
                   className={`tdp-input__label${
                     formState.formValues.username ? "--hidden" : ""
                   }`}
@@ -141,14 +151,14 @@ const Register: React.FC = () => {
             <div className="tdp-input-parent tdp-input-parent--shadow tdp-component--primary">
               <div className="tdp-input-content">
                 <input
-                  id="login"
+                  id="email"
                   name="email"
                   className="tdp-input tdp-input--has-icon"
                   onChange={handleChange}
                   value={formState.formValues.email}
                 />
                 <label
-                  htmlFor="login"
+                  htmlFor="email"
                   className={`tdp-input__label${
                     formState.formValues.email ? "--hidden" : ""
                   }`}
@@ -220,7 +230,7 @@ const Register: React.FC = () => {
           </form>
         </div>
       </section>
-    </Layout>
+    </div>
   );
 };
 

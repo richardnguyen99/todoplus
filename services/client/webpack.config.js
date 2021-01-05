@@ -32,6 +32,7 @@ module.exports = {
       react: path.resolve("./node_modules/react"),
       "@pages": path.resolve(__dirname, "src", "pages"),
       "@components": path.resolve(__dirname, "src", "components"),
+      "@context": path.resolve(__dirname, "src", "context"),
     }
   },
   devServer: {

@@ -1,7 +1,8 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
+import axios from "axios";
 
-import { Layout } from "@components";
+import { ToastContext } from "@context/Toast";
 
 type FormState = {
   formValues: {
@@ -19,6 +20,8 @@ type FormState = {
 };
 
 const Login: React.FC = () => {
+  const toastContext = useContext(ToastContext);
+
   const [formState, setFormState] = useState<FormState>({
     formValues: {
       username: "",
@@ -72,16 +75,25 @@ const Login: React.FC = () => {
     handleValidation(e.target);
   };
 
-  const handleSubmit = (e: React.FormEvent<HTMLFormElement>): void => {
+  const handleSubmit = async (
+    e: React.FormEvent<HTMLFormElement>
+  ): Promise<void> => {
     e.preventDefault();
     const { formValidity, formValues } = formState;
     if (Object.values(formValidity).every(Boolean)) {
-      console.log(formValues);
+      axios({
+        url: "/api/v1/auth/login",
+        data: formValues,
+        headers: { "Content-Type": "application/json" },
+        method: "POST",
+      }).then((res) => {
+        toastContext.add(res.data.msg, "bottom-center");
+      });
     }
   };
 
   return (
-    <Layout>
+    <div className="tdp-container">
       <section className="tdp-hero">
         <div className="tdp-hero__center">
           <form className="tdp-form" onSubmit={handleSubmit}>
@@ -170,7 +182,7 @@ const Login: React.FC = () => {
           </form>
         </div>
       </section>
-    </Layout>
+    </div>
   );
 };
 

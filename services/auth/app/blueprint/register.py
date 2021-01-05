@@ -15,6 +15,7 @@ class RegisterAPI(MethodView):
 
         try:
             data = user_schema.load(req)
+            print(data)
 
             if err:
                 res = {"msg": req, "status": "failed"}
@@ -39,7 +40,7 @@ class RegisterAPI(MethodView):
             else:
                 res = {"msg": "User has existed already", "status": "failed"}
 
-                return make_response(jsonify(res)), HTTPStatus.BAD_REQUEST
+                return make_response(jsonify(res)), HTTPStatus.CONFLICT
         except Exception as e:
             res = {"msg": f"Internal errors: {e}", "status": "failed", "data": req}
 

@@ -34,7 +34,7 @@ class LoginAPI(MethodView):
                     "status": "failed",
                 }
 
-                return make_response(jsonify(res)), HTTPStatus.BAD_REQUEST
+                return make_response(jsonify(res)), HTTPStatus.FORBIDDEN
 
             if not user.is_active:
                 res = {
@@ -42,7 +42,7 @@ class LoginAPI(MethodView):
                     "status": "failed",
                 }
 
-                return make_response(jsonify(res)), HTTPStatus.FORBIDDEN
+                return make_response(jsonify(res)), HTTPStatus.UNAUTHORIZED
 
             update_user_login(user)
             res = {"msg": "Logged in success", "status": "success", "data": f"{req}"}

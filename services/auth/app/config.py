@@ -10,6 +10,7 @@ class BaseConfig(object):
     SQLALCHEMY_TRACK_MODIFICATIONS = True
     ACCESS_TOKEN_EXPIRE = 30
     CORS_ORIGINS = "*"
+    CORS_METHODS = "*"
 
 
 class DevConfig(BaseConfig):
