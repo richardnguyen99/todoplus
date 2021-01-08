@@ -21,7 +21,9 @@
       "@pages": ["./src/pages"],
       "@pages/*": ["./src/pages/*"],
       "@context": ["./src/context"],
-      "@context/*": ["./src/context/*"]
+      "@context/*": ["./src/context/*"],
+      "@": ["./src"],
+      "@/*": ["./src/*"]
     }
   },
   "include": [
