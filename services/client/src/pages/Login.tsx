@@ -87,7 +87,10 @@ const Login: React.FC = () => {
         headers: { "Content-Type": "application/json" },
         method: "POST",
       }).then((res) => {
-        toastContext.add(res.data.msg, "bottom-center");
+        toastContext.add(res.data.msg, {
+          autoDismiss: false,
+          placement: "bottom-right",
+        });
       });
     }
   };

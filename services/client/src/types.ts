@@ -27,9 +27,9 @@ export interface ToastProps {
   content?: string;
 
   /**
-   *
+   * Display of toast components. Default is primary
    */
-  placement: ToastPlacement;
+  appearance?: string;
 
   /**
    * Inherited dismiss function to delete or remove
@@ -65,19 +65,34 @@ export interface ToastProps {
 
 export interface ToastConfig {
   id?: string;
-  header: string;
   content?: string;
   placement?: ToastPlacement;
   autoDismiss?: boolean;
   autoDismissTimeout?: number;
   transtionDuration?: number;
-  transitionState?: TransitionStatus;
+  transitionState: TransitionStatus;
 }
+
+export interface ToastContainerProps {
+  /**
+   * Placement where to put Toast components.
+   * Default will be "bottom-right"
+   */
+  placement?: ToastPlacement;
+}
+
+export type ContainerPlacement = Partial<
+  Record<ToastPlacement, Array<ToastProps>>
+>;
 
 export type ToastContextType = {
   /**
    * Add Toast components to the Toast context
    */
   add: (header: string, options: ToastConfig) => void;
+
+  /**
+   * Remove toast components from the Toast context
+   */
   remove: (id: string) => void;
 };
