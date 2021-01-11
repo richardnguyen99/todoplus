@@ -99,9 +99,16 @@ const Register: React.FC = () => {
         data: formValues,
         headers: { "Content-Type": "application/json" },
         method: "POST",
-      }).then((res) => {
-        toastContext.add(res.data, "bottom-center");
-      });
+      })
+        .then((res) => {
+          toastContext.add(res.data, { placement: "bottom-center" });
+        })
+        .catch((error) => {
+          // console.log(error.response);
+          toastContext.add(error.response.data.msg, {
+            placement: "bottom-left",
+          });
+        });
     }
   };
 

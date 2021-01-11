@@ -5,12 +5,13 @@ import { createPortal } from "react-dom";
 
 import {
   ToastContextType,
-  ToastProps,
+  ToastOption,
   ToastConfig,
   ContainerPlacement,
   ToastPlacement,
 } from "@/types";
 import { Toast, ToastContainer } from "@components/Toast";
+import { Transition, TransitionGroup } from "react-transition-group";
 
 export const ToastContext = createContext<ToastContextType>({
   add: () => {},
@@ -18,7 +19,14 @@ export const ToastContext = createContext<ToastContextType>({
 });
 
 const ToastProvider: React.FC = ({ children }) => {
-  const [placement, setPlacement] = useState<ContainerPlacement>({});
+  const [placement, setPlacement] = useState<ContainerPlacement>({
+    "bottom-center": [],
+    "bottom-right": [],
+    "bottom-left": [],
+    "top-center": [],
+    "top-left": [],
+    "top-right": [],
+  });
 
   const generateUEID = (): string => {
     const first = (Math.random() * 46656) | 0;
@@ -31,27 +39,27 @@ const ToastProvider: React.FC = ({ children }) => {
   };
 
   const add = useCallback(
-    (header: string, option: ToastConfig): void => {
+    (header: string, option: ToastOption): void => {
+      console.log(placement);
       const p = option.placement || "bottom-right";
-      const newToast: ToastProps = {
+      const newToast: ToastConfig = {
         id: option.id || generateUEID(),
         header,
+        appearance: option.appearance || "primary",
+        placement: p,
         autoDismiss: option.autoDismiss || false,
         autoDismissTimeout: option.autoDismiss
           ? option.autoDismissTimeout || 5000
           : 0,
         content: option.content,
-        transitionDuration: option.transtionDuration,
-        transitionState: option.transitionState,
-        onDismiss: () => {},
+        transitionDuration: option.transitionDuration || 300,
+        onDismissCallback: () => {},
       };
 
       const newPlacement = placement;
-      newPlacement[option.placement] = [
-        ...newPlacement[option.placement],
-        newToast,
-      ];
-      setPlacement(newPlacement);
+      newPlacement[p].push(newToast);
+
+      setPlacement({ ...placement, [p]: newPlacement[p] });
     },
     [placement]
   );
@@ -87,29 +95,43 @@ const ToastProvider: React.FC = ({ children }) => {
   return (
     <ToastContext.Provider value={toastMethods}>
       {children}
-      {placement
-        ? (Object.keys(placement) as ToastPlacement[]).map((p) =>
-            createPortal(
-              <ToastContainer placement={p}>
-                {placement[p].map((t) => (
-                  <Toast
-                    header={t.header}
-                    autoDismiss={t.autoDismiss}
-                    autoDismissTimeout={t.autoDismissTimeout}
-                    content={t.content}
-                    appearance={t.appearance}
-                    onDismiss={onDismissToast(t.id)}
-                    id={t.id}
-                    key={t.id}
-                    transitionDuration={5000}
-                    transitionState={t.transitionState}
-                  />
-                ))}
-              </ToastContainer>,
-              document.body
-            )
-          )
-        : null}
+      {(Object.keys(placement) as ToastPlacement[]).map((p) => {
+        if (placement[p].length === 0) {
+          return null;
+        }
+
+        return createPortal(
+          <ToastContainer placement={p}>
+            <TransitionGroup>
+              {placement[p].map((t) => (
+                <Transition
+                  appear
+                  key={t.id}
+                  mountOnEnter
+                  timeout={t.transitionDuration}
+                  unmountOnExit
+                >
+                  {(transitionState): React.ReactElement => (
+                    <Toast
+                      header={t.header}
+                      autoDismiss={t.autoDismiss}
+                      autoDismissTimeout={t.autoDismissTimeout}
+                      content={t.content}
+                      appearance={t.appearance}
+                      onDismiss={onDismissToast(t.id)}
+                      id={t.id}
+                      key={t.id}
+                      transitionDuration={t.transitionDuration}
+                      transitionState={transitionState}
+                    />
+                  )}
+                </Transition>
+              ))}
+            </TransitionGroup>
+          </ToastContainer>,
+          document.body
+        );
+      })}
     </ToastContext.Provider>
   );
 };

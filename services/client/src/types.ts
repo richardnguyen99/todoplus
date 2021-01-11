@@ -63,14 +63,32 @@ export interface ToastProps {
   transitionState: TransitionStatus;
 }
 
+/**
+ * ToastConfig that stores config to create a Toast component.
+ */
 export interface ToastConfig {
+  id: string;
+  header: string;
+  content?: string;
+  appearance: string;
+  placement: ToastPlacement;
+  autoDismiss: boolean;
+  autoDismissTimeout: number;
+  transitionDuration: number;
+  onDismissCallback?: () => void;
+}
+
+/**
+ * ToastOption that will be used to pass to Toast add method.
+ */
+export interface ToastOption {
   id?: string;
   content?: string;
+  appearance?: string;
   placement?: ToastPlacement;
   autoDismiss?: boolean;
   autoDismissTimeout?: number;
-  transtionDuration?: number;
-  transitionState: TransitionStatus;
+  transitionDuration?: number;
 }
 
 export interface ToastContainerProps {
@@ -82,14 +100,14 @@ export interface ToastContainerProps {
 }
 
 export type ContainerPlacement = Partial<
-  Record<ToastPlacement, Array<ToastProps>>
+  Record<ToastPlacement, Array<ToastConfig>>
 >;
 
 export type ToastContextType = {
   /**
    * Add Toast components to the Toast context
    */
-  add: (header: string, options: ToastConfig) => void;
+  add: (header: string, options: ToastOption) => void;
 
   /**
    * Remove toast components from the Toast context
